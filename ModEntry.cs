@@ -1,6 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input; 
+using Microsoft.Xna.Framework.Input;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -13,36 +13,27 @@ namespace LeftyMode
 
         public override void Entry(IModHelper helper)
         {
+            // This name must match the function below!
             helper.Events.Input.ButtonsChanged += OnButtonsChanged;
         }
 
         private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
         {
-            // Toggles the mode when the 'W' key is pressed
+            // Toggle mode with 'W' key
             if (e.Pressed.Contains(SButton.W))
             {
                 IsLeftClickMode = !IsLeftClickMode;
                 string mode = IsLeftClickMode ? "Left Click" : "Right Click";
                 this.Monitor.Log($"Switched to {mode} mode.", LogLevel.Info);
-                Game1.addHUDMessage(new HUDMessage($"Mouse Mode: {mode}", 3));
             }
 
-            CheckMouse();
-        }
-
-        private void CheckMouse()
-        {
+            // Mouse check
             MouseState mouseState = Mouse.GetState();
-            
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                if (IsLeftClickMode)
+                if (!IsLeftClickMode)
                 {
-                    // Logic for standard Left Click
-                }
-                else
-                {
-                    // Logic to simulate Right Click when in Lefty Mode
+                    // Logic for right-click simulation goes here
                 }
             }
         }
