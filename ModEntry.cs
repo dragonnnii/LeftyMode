@@ -19,21 +19,21 @@ namespace LeftyMode
 
         private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
         {
-            // Changed from SButton.W to SButton.RightStick (D3)
-            if (e.Pressed.Contains(SButton.RightStick))
+            // Changed SButton.D3 to SButton.Digit3
+            if (e.Pressed.Contains(SButton.Digit3))
             {
                 this.IsLeftClickMode = !this.IsLeftClickMode;
                 string modeName = this.IsLeftClickMode ? "Left Click" : "Right Click";
 
-                Game1.addHUDMessage(new HUDMessage($"Mouse Mode: {modeName}", 3));
-                this.Monitor.Log($"Switched to {modeName} mode using D3.", LogLevel.Info);
+                StardewValley.Game1.addHUDMessage(new StardewValley.HUDMessage($"Mouse Mode: {modeName}", 3));
+                this.Monitor.Log($"Switched to {modeName} mode.", LogLevel.Info);
             }
 
-            // Mouse logic remains the same
+            // Mouse logic
             MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed && !this.IsLeftClickMode)
             {
-                this.Monitor.Log("D3 Mode: Simulating Right Click...", LogLevel.Debug);
+                this.Monitor.Log("Right-click mode active.", LogLevel.Debug);
             }
         }
     }
