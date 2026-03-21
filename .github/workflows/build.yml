@@ -14,7 +14,7 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Build Mod
-      # This command triggers the automatic download of MonoGame
+      # This command will automatically download MonoGame 3.8.1
       run: dotnet build --configuration Release
 
     - name: Save Artifact
