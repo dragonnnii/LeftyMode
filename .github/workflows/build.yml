@@ -1,4 +1,4 @@
-name: NuGet Build
+name: Build Mod
 
 on: [push]
 
@@ -13,13 +13,12 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: Build Mod
-      # This command will automatically download MonoGame 3.8.1
+    - name: Build
       run: dotnet build --configuration Release
 
-    - name: Save Artifact
+    - name: Save Mod
       uses: actions/upload-artifact@v4
       with:
-        name: LeftyMode-Output
+        name: LeftyMode-Final
         path: bin/Release/net6.0/
         
