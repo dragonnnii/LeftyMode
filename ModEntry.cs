@@ -1,45 +1,50 @@
 using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input; // Fixes the MouseState/Keyboard errors
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 
 namespace LeftyMode
 {
+    /// <summary>The mod entry point.</summary>
     public class ModEntry : Mod
     {
-        private bool isRightClickMode = false;
-
+        /*********
+        ** Public methods
+        *********/
+        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
+        /// <param name="helper">Provides simplified APIs for writing mods.</param>
         public override void Entry(IModHelper helper)
         {
-            // Listen for the button press
-            helper.Events.Input.ButtonPressed += OnButtonPressed;
+            helper.Events.Input.ButtonsChanged += OnButtonsChanged;
         }
 
-        private void OnButtonPressed(object sender, ButtonPressedEventArgs e)
-        {
-            // Ignore if the player hasn't loaded a save yet
-            if (!Context.IsWorldReady)
-                return;
 
-            // Toggle logic set to 'D3' key (Number 3)
-            if (e.Button == SButton.D3)
+        /*********
+        ** Private methods
+        *********/
+        /// <summary>Raised after the player presses or releases any buttons.</summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event data.</param>
+        private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
+        {
+            // Example: Check if a specific key (like 'W') is pressed to toggle logic
+            if (e.Pressed.Contains(SButton.W))
             {
-                ToggleClickMode();
+                this.Monitor.Log("W key was pressed! LeftyMode logic can trigger here.", LogLevel.Debug);
             }
         }
 
-        private void ToggleClickMode()
+        /// <summary>A helper method to get the current mouse state.</summary>
+        private void CheckMouse()
         {
-            isRightClickMode = !isRightClickMode;
-
-            // Logic to switch between Left (Tool/Hit) and Right (Action/Interact)
-            if (isRightClickMode)
+            // This now works because of the 'using Microsoft.Xna.Framework.Input' line at the top
+            MouseState mouseState = Mouse.GetState();
+            
+            if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                Game1.addHUDMessage(new HUDMessage("Mode: Right Click (Action)", 3));
-            }
-            else
-            {
-                Game1.addHUDMessage(new HUDMessage("Mode: Left Click (Tool)", 3));
+                // Your custom left-click logic
             }
         }
     }
