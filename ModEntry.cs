@@ -13,13 +13,13 @@ namespace LeftyMode
 
         public override void Entry(IModHelper helper)
         {
-            // This name must match the function below!
+            // The name here...
             helper.Events.Input.ButtonsChanged += OnButtonsChanged;
         }
 
+        // ...MUST match the name here!
         private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
         {
-            // Toggle mode with 'W' key
             if (e.Pressed.Contains(SButton.W))
             {
                 IsLeftClickMode = !IsLeftClickMode;
@@ -27,14 +27,11 @@ namespace LeftyMode
                 this.Monitor.Log($"Switched to {mode} mode.", LogLevel.Info);
             }
 
-            // Mouse check
+            // Simple Mouse Check
             MouseState mouseState = Mouse.GetState();
-            if (mouseState.LeftButton == ButtonState.Pressed)
+            if (mouseState.LeftButton == ButtonState.Pressed && !IsLeftClickMode)
             {
-                if (!IsLeftClickMode)
-                {
-                    // Logic for right-click simulation goes here
-                }
+                // Logic for right-click simulation
             }
         }
     }
