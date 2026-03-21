@@ -3,18 +3,14 @@
   <PropertyGroup>
     <AssemblyName>LeftyMode</AssemblyName>
     <RootNamespace>LeftyMode</RootNamespace>
-    <Version>1.1.0</Version>
     <TargetFramework>net6.0</TargetFramework>
-    <EnableHarmony>true</EnableHarmony>
-    <Deterministic>true</Deterministic>
-
-    <GamePath>.</GamePath>
-    <EnableModDeploy>false</EnableModDeploy>
-    <EnableModZip>false</EnableModZip>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <SkipModBuildTasks>true</SkipModBuildTasks>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1" />
+    <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1" ExcludeAssets="build" />
   </ItemGroup>
 
 </Project>
