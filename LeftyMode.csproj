@@ -8,6 +8,9 @@
     <SkipModBuildTasks>true</SkipModBuildTasks>
     <EnableModDeploy>false</EnableModDeploy>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <NoWarn>$(NoWarn);MSB3270</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,8 +22,10 @@
       <HintPath>libs/StardewModdingAPI.dll</HintPath>
       <Private>false</Private>
     </Reference>
-
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>libs/MonoGame.Framework.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
 </Project>
