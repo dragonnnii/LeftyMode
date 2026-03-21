@@ -11,7 +11,7 @@ namespace LeftyMode
 
         public override void Entry(IModHelper helper)
         {
-            // Listen for the button press (Works for keyboard or mapped mobile inputs)
+            // Listen for the button press
             helper.Events.Input.ButtonPressed += OnButtonPressed;
         }
 
@@ -21,8 +21,8 @@ namespace LeftyMode
             if (!Context.IsWorldReady)
                 return;
 
-            // Check if the 'W' key was pressed
-            if (e.Button == SButton.W)
+            // Toggle logic set to 'A' key
+            if (e.Button == SButton.A)
             {
                 ToggleClickMode();
             }
@@ -32,8 +32,7 @@ namespace LeftyMode
         {
             isRightClickMode = !isRightClickMode;
 
-            // Logic to tell the game which 'tool' or 'action' mouse button to use
-            // On mobile, this helps Cinderbox differentiate the touch intent
+            // Logic to switch between Left (Tool/Hit) and Right (Action/Interact)
             if (isRightClickMode)
             {
                 Game1.addHUDMessage(new HUDMessage("Mode: Right Click (Action)", 3));
