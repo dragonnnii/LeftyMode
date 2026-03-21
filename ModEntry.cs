@@ -21,8 +21,8 @@ namespace LeftyMode
             if (!Context.IsWorldReady)
                 return;
 
-            // Toggle logic set to 'A' key
-            if (e.Button == SButton.A)
+            // Toggle logic set to 'D3' key (Number 3)
+            if (e.Button == SButton.D3)
             {
                 ToggleClickMode();
             }
