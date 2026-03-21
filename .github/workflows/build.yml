@@ -1,4 +1,4 @@
-name: Build Mod
+name: Fresh Build
 
 on: [push]
 
@@ -12,6 +12,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 6.0.x
+
+    - name: Clean Project
+      run: dotnet clean
 
     - name: Build
       run: dotnet build --configuration Release
