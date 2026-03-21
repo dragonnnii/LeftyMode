@@ -7,9 +7,10 @@
     <TargetFramework>net6.0</TargetFramework>
     <EnableHarmony>true</EnableHarmony>
     <Deterministic>true</Deterministic>
-    
-    <GamePath>$(MSBuildProjectDirectory)/FakeGame</GamePath>
+
+    <GamePath>.</GamePath>
     <EnableModDeploy>false</EnableModDeploy>
+    <EnableModZip>false</EnableModZip>
   </PropertyGroup>
 
   <ItemGroup>
