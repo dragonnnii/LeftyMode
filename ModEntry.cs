@@ -19,17 +19,16 @@ namespace LeftyMode
 
         private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
         {
-            // Changed SButton.D3 to SButton.Digit3
-            if (e.Pressed.Contains(SButton.Digit3))
+            // Changed to Number3 - the official SMAPI name for the '3' key
+            if (e.Pressed.Contains(SButton.Number3))
             {
                 this.IsLeftClickMode = !this.IsLeftClickMode;
                 string modeName = this.IsLeftClickMode ? "Left Click" : "Right Click";
 
                 StardewValley.Game1.addHUDMessage(new StardewValley.HUDMessage($"Mouse Mode: {modeName}", 3));
-                this.Monitor.Log($"Switched to {modeName} mode.", LogLevel.Info);
+                this.Monitor.Log($"Switched to {modeName} mode using D3.", LogLevel.Info);
             }
 
-            // Mouse logic
             MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed && !this.IsLeftClickMode)
             {
