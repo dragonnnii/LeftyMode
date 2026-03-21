@@ -1,26 +1,40 @@
-<Project Sdk="Microsoft.NET.Sdk">
+using System;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using StardewModdingAPI;
+using StardewModdingAPI.Events;
+using StardewValley;
 
-  <PropertyGroup>
-    <AssemblyName>LeftyMode</AssemblyName>
-    <RootNamespace>LeftyMode</RootNamespace>
-    <Version>1.1.0</Version>
-    <TargetFramework>net6.0</TargetFramework>
-    <SkipModBuildTasks>true</SkipModBuildTasks>
-    <EnableModDeploy>false</EnableModDeploy>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
+namespace LeftyMode
+{
+    public class ModEntry : Mod
+    {
+        private bool IsLeftClickMode = true;
 
-  <ItemGroup>
-    <Reference Include="StardewValley">
-      <HintPath>**/*StardewValley.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="StardewModdingAPI">
-      <HintPath>**/*StardewModdingAPI.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
-  </ItemGroup>
+        public override void Entry(IModHelper helper)
+        {
+            helper.Events.Input.ButtonsChanged += this.OnButtonsChanged;
+        }
 
-</Project>
+        private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
+        {
+            // Fixed: Use SButton.D3 and added the missing semicolon at the end
+            if (e.Pressed.Contains(SButton.D3))
+            {
+                this.IsLeftClickMode = !this.IsLeftClickMode;
+                string modeName = this.IsLeftClickMode ? "Left Click" : "Right Click";
+
+                StardewValley.Game1.addHUDMessage(new StardewValley.HUDMessage($"Mouse Mode: {modeName}", 3));
+                this.Monitor.Log($"Switched to {modeName} mode using D3.", LogLevel.Info);
+            }
+
+            // Mouse logic
+            MouseState mouseState = Mouse.GetState();
+            if (mouseState.LeftButton == ButtonState.Pressed && !this.IsLeftClickMode)
+            {
+                this.Monitor.Log("D3 Mode: Left click acting as Right Click.", LogLevel.Debug);
+            }
+        }
+    }
+}
