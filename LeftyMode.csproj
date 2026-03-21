@@ -1,4 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <AssemblyName>LeftyMode</AssemblyName>
     <RootNamespace>LeftyMode</RootNamespace>
@@ -10,15 +11,15 @@
 
   <ItemGroup>
     <Reference Include="StardewValley">
-      <HintPath>StardewValley.dll</HintPath>
       <HintPath>libs/StardewValley.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="StardewModdingAPI">
-      <HintPath>StardewModdingAPI.dll</HintPath>
       <HintPath>libs/StardewModdingAPI.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
   </ItemGroup>
+
 </Project>
