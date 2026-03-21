@@ -5,7 +5,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -16,7 +15,7 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Build Mod
-      run: dotnet build --configuration Release /p:GamePath="."
+      run: dotnet build --configuration Release /p:GamePath="./FakeGame" /p:EnableModDeploy=false
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
