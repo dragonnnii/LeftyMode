@@ -1,9 +1,10 @@
 using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewValley; // <--- THIS LINE IS REQUIRED FOR Game1
+using StardewValley;
 
 namespace LeftyMode
 {
@@ -13,20 +14,20 @@ namespace LeftyMode
 
         public override void Entry(IModHelper helper)
         {
-            helper.Events.Input.ButtonsChanged += OnButtonsChanged;
+            helper.Events.Input.ButtonsChanged += this.OnButtonsChanged;
         }
 
         private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
         {
             if (e.Pressed.Contains(SButton.W))
             {
-                IsLeftClickMode = !IsLeftClickMode;
-                string mode = IsLeftClickMode ? "Left Click" : "Right Click";
+                this.IsLeftClickMode = !this.IsLeftClickMode;
+                string modeName = this.IsLeftClickMode ? "Left Click" : "Right Click";
+
+                // Using the full path ensures the compiler finds Game1 and HUDMessage
+                StardewValley.Game1.addHUDMessage(new StardewValley.HUDMessage($"Mouse Mode: {modeName}", 3));
                 
-                // We use StardewValley.Game1 to be 100% sure the compiler finds it
-                StardewValley.Game1.addHUDMessage(new StardewValley.HUDMessage($"Mouse Mode: {mode}", 3));
-                
-                this.Monitor.Log($"Switched to {mode} mode.", LogLevel.Info);
+                this.Monitor.Log($"Switched to {modeName} mode.", LogLevel.Info);
             }
         }
     }
