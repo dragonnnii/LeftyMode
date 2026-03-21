@@ -7,6 +7,10 @@
     <TargetFramework>net6.0</TargetFramework>
     <SkipModBuildTasks>true</SkipModBuildTasks>
     <EnableModDeploy>false</EnableModDeploy>
+    
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>false</Deterministic>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <ItemGroup>
