@@ -5,14 +5,27 @@
     <RootNamespace>LeftyMode</RootNamespace>
     <Version>1.1.0</Version>
     <TargetFramework>net6.0</TargetFramework>
-    <EnableHarmony>true</EnableHarmony>
-    <Deterministic>true</Deterministic>
-    <GamePath>.</GamePath>
+    <SkipModBuildTasks>true</SkipModBuildTasks>
     <EnableModDeploy>false</EnableModDeploy>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1" />
+    <Reference Include="Stardew Valley">
+      <HintPath>libs/Stardew Valley.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>libs/StardewModdingAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework">
+      <HintPath>libs/Microsoft.Xna.Framework.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics">
+      <HintPath>libs/Microsoft.Xna.Framework.Graphics.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
 </Project>
