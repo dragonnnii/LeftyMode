@@ -11,12 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Stardew Valley">
-      <HintPath>**/Stardew Valley.dll</HintPath>
+    <Reference Include="StardewValley">
+      <HintPath>libs/StardewValley.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="StardewModdingAPI">
-      <HintPath>**/StardewModdingAPI.dll</HintPath>
+      <HintPath>libs/SMAPI.dll</HintPath>
       <Private>false</Private>
     </Reference>
     
