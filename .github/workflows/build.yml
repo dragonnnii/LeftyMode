@@ -1,4 +1,4 @@
-name: Build Mod
+name: Manual Build
 
 on: [push]
 
@@ -6,21 +6,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
+    - uses: actions/checkout@v4
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 6.0.x
 
-    - name: Build Mod
-      # This command forces the build to ignore the game path
-      run: dotnet build --configuration Release /p:GamePath="." /p:EnableModDeploy=false
+    - name: Build DLL
+      run: dotnet build --configuration Release
 
-    - name: Upload Artifact
+    - name: Upload DLL
       uses: actions/upload-artifact@v4
       with:
-        name: LeftyMode-DLL
+        name: LeftyMode-Output
         path: bin/Release/net6.0/
         
