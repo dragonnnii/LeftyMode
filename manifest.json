@@ -1,10 +1,10 @@
-﻿{
-  "Name": "LeftyMode",
-  "Author": "Max Makes Mods",
-  "Version": "2.0.0-beta",
-  "Description": "Switches the right and left mouse buttons.",
-  "UniqueID": "maxmakesmods.leftymode",
+{
+  "Name": "Lefty Mode Toggle",
+  "Author": "YourName",
+  "Version": "1.1.0",
+  "Description": "Toggles between left and right click using the W key.",
+  "UniqueID": "YourName.LeftyMode",
   "EntryDll": "LeftyMode.dll",
-  "MinimumApiVersion": "3.8.0",
-  "UpdateKeys": [ "Nexus:6199" ]
+  "MinimumApiVersion": "4.5.0",
+  "UpdateKeys": []
 }
