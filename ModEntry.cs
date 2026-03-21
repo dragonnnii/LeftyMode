@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using StardewModdingAPI;
@@ -19,20 +18,18 @@ namespace LeftyMode
 
         private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
         {
-            // Changed to Number3 - the official SMAPI name for the '3' key
+            // Toggle using the Number 3 key
             if (e.Pressed.Contains(SButton.Number3))
             {
                 this.IsLeftClickMode = !this.IsLeftClickMode;
-                string modeName = this.IsLeftClickMode ? "Left Click" : "Right Click";
-
-                StardewValley.Game1.addHUDMessage(new StardewValley.HUDMessage($"Mouse Mode: {modeName}", 3));
-                this.Monitor.Log($"Switched to {modeName} mode using D3.", LogLevel.Info);
+                string mode = this.IsLeftClickMode ? "Left Click" : "Right Click";
+                Game1.addHUDMessage(new HUDMessage($"Mode: {mode}", 3));
             }
 
-            MouseState mouseState = Mouse.GetState();
-            if (mouseState.LeftButton == ButtonState.Pressed && !this.IsLeftClickMode)
+            // Right-click logic
+            if (!this.IsLeftClickMode && Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                this.Monitor.Log("Right-click mode active.", LogLevel.Debug);
+                // Right click simulation logic
             }
         }
     }
