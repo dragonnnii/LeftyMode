@@ -1,36 +1,25 @@
-using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using StardewModdingAPI;
-using StardewModdingAPI.Events;
-using StardewValley;
+<Project Sdk="Microsoft.NET.Sdk">
 
-namespace LeftyMode
-{
-    public class ModEntry : Mod
-    {
-        private bool IsLeftClickMode = true;
+  <PropertyGroup>
+    <AssemblyName>LeftyMode</AssemblyName>
+    <RootNamespace>LeftyMode</RootNamespace>
+    <Version>1.1.0</Version>
+    <TargetFramework>net6.0</TargetFramework>
+    <SkipModBuildTasks>true</SkipModBuildTasks>
+    <EnableModDeploy>false</EnableModDeploy>
+  </PropertyGroup>
 
-        public override void Entry(IModHelper helper)
-        {
-            helper.Events.Input.ButtonsChanged += this.OnButtonsChanged;
-        }
+  <ItemGroup>
+    <Reference Include="StardewValley">
+      <HintPath>StardewValley.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="StardewModdingAPI">
+      <HintPath>StardewModdingAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
+  </ItemGroup>
 
-        private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
-        {
-            // Toggle using the Number 3 key
-            if (e.Pressed.Contains(SButton.Number3))
-            {
-                this.IsLeftClickMode = !this.IsLeftClickMode;
-                string mode = this.IsLeftClickMode ? "Left Click" : "Right Click";
-                Game1.addHUDMessage(new HUDMessage($"Mode: {mode}", 3));
-            }
-
-            // Right-click logic
-            if (!this.IsLeftClickMode && Mouse.GetState().LeftButton == ButtonState.Pressed)
-            {
-                // Right click simulation logic
-            }
-        }
-    }
-}
+</Project>
