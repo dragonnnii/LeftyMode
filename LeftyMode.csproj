@@ -12,13 +12,14 @@
   <ItemGroup>
     <Reference Include="StardewValley">
       <HintPath>libs/StardewValley.dll</HintPath>
+      <HintPath>StardewValley.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="StardewModdingAPI">
       <HintPath>libs/StardewModdingAPI.dll</HintPath>
+      <HintPath>StardewModdingAPI.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
   </ItemGroup>
 
