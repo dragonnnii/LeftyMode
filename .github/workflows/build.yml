@@ -1,4 +1,4 @@
-name: Build x86 Mod
+name: Build Mod
 
 on: [push]
 
@@ -14,12 +14,11 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Build
-      # Added the architecture flag here
-      run: dotnet build --configuration Release -r win-x86 --self-contained false
+      run: dotnet build --configuration Release
 
     - name: Save Mod
       uses: actions/upload-artifact@v4
       with:
-        name: LeftyMode-x86
-        path: bin/Release/net6.0/win-x86/
+        name: LeftyMode-Final
+        path: bin/Release/net6.0/
         
