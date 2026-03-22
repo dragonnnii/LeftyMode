@@ -18,11 +18,18 @@ namespace LeftyMode
 
         private void OnButtonsChanged(object sender, ButtonsChangedEventArgs e)
         {
+            // Toggle using the '3' key (Digit3/Number3)
             if (e.Pressed.Contains(SButton.Number3))
             {
                 this.IsLeftClickMode = !this.IsLeftClickMode;
                 string mode = this.IsLeftClickMode ? "Left Click" : "Right Click";
-                Game1.addHUDMessage(new HUDMessage($"Mode: {mode}", 3));
+                
+                if (Context.IsWorldReady)
+                {
+                    Game1.addHUDMessage(new HUDMessage($"Mode: {mode}", 3));
+                }
+                
+                this.Monitor.Log($"Switched to {mode} mode.", LogLevel.Info);
             }
         }
     }
